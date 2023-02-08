@@ -1,0 +1,50 @@
+В Бд будет хранится цены на бензин АИ92, АИ95, АИ98, ДТ
+Водитель подъезжает к заправке выбирает топливо, и вводит количество литров
+и номер авто и электронную почту
+после нажимает далее ему в ответ возвращается сумма которую он должен оплатить и id оплаты
+вводит сумму и отправляет запрос оплатить
+найти по id оплаты в БД сумму общей оплаты сравнить с суммой которую он передал если недостаточно вернуть ответ сколько еще добавить
+если достаточно то вернуть ответ 200 на его электронную почту отправить чек
+номер чека в бд
+сумма
+сумма которую он оплатил
+сдача если есть
+дата
+название АЗС
+какой бензин
+количество литров
+
+
+
+
+
+  @Override
+    public void sendEmail(String recepient, String text, String subject) {
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom(sender);
+        simpleMailMessage.setTo(recepient);
+        simpleMailMessage.setText(text);
+        simpleMailMessage.setSubject(subject);
+        javaMailSender.send(simpleMailMessage);
+    }
+
+
+
+    spring.datasource.url=jdbc:postgresql://localhost:5433/otp_service_db
+    spring.datasource.username=postgres
+    spring.datasource.password=postgres
+
+    spring.jpa.hibernate.ddl-auto=update
+    spring.jpa.show-sql=true
+
+    spring.jackson.time-zone=Asia/Bishkek
+
+    spring.mail.host=smtp.gmail.com
+    spring.mail.port=587
+    spring.mail.username=aziret0312@gmail.com
+    spring.mail.password=cfa6db26-1eca-4e7f-9a17-eaed538a36f8
+    spring.mail.properties.mail.smtp.auth=true
+    spring.mail.properties.mail.smtp.starttls.enable=true
+
+    jwt.token.secret = MegaOtpService_2
+    jwt.token.expired= 3600000
